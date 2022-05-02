@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .btn {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        padding: 20px;
+        border: 2px solid black;
+    }
+</style>
+
+<body>
+    <div class="btn">1</div>
+    <div class="btn">2</div>
+    <div class="btn">3</div>
+    <!-- 1 重复声明 -->
+    <p>var 允许重复声明</p>
+    <p>let const 不允许重复声明</p>
+    <p>无论是以隐函数的方式存在还是什么 第二次声明都会报错</p>
+    <p>let 允许重新赋值 而const 不允许</p>
+
+    <!-- 2 变量提升 -->
+    <p>var会提升变量到当前作用域的顶部</p>
+    <p>let const不存在变量提升 要做到先声明后使用</p>
+
+    <!-- 3 暂时性死区 -->
+    <p>只要作用域内存在let const 他们所声明的变量或常量就会自动绑定在当前这个区域内 不在受到外部影响</p>
+
+    <!-- 4 window对象的属性和方法 -->
+    <p>在全局作用域中 var声明的变量 或通过function声明的函数，会自动变成window对象的方法</p>
+    <p>let const 不会</p>
+
+    <!-- 5 块级作用域 -->
+    <p>var 没有块级作用域</p>
+    <p>let const 有作用域 花括号内为一个块</p>
+    <p>块如if(){}switch(){}do{}while()等 注意对象没有作用域 但对象中的函数具有作用域</p>
+    <!-- <script>
+        1
+        function fun(a) {
+            let a = 1;
+        }  //会报错 
+
+        // 2
+        let b = 2;
+        function ss() {
+            console.log(b);
+            let b = 3;             //会报错 b 在函数中被声明 不在受外部影响 又let无提升 报错
+        }
+        ss(); //函数只有被调用的时候作用域才会存在
+
+        //    4
+        var c = 4;
+        function asd() { };
+        console.log(window.c);
+        console.log(window.asd === asd);
+        //   5 
+        for (var i = 0; i < 2; i++) {
+
+        };
+        console.log(i); //可以打印出 2 没有作用域限制 此处的i可以用到下一项
+
+    </script> -->
+
+    <script>
+        // var oBtn = document.querySelectorAll('.btn');
+        // for (var i = 0; i < oBtn.length; i++) {
+        //     (function (index) {
+        //         oBtn[index].addEventListener('click', function () {
+        //             console.log(index + 1);
+        //         }, false)
+        //     })(i);
+
+        // }
+        let oBtn = document.querySelectorAll('.btn');
+        for (let i = 0; i < oBtn.length; i++) {
+            oBtn[i].addEventListener('click', function () {
+                console.log(i);
+            }, false)
+        };
+        // 像这种题一般使用let const更好 其直接再次创建作用域块级作用域不会向外寻找 如果使用var需要使用闭包
+
+    </script>
+
+</body>
+
+</html>

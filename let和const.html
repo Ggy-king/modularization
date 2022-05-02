@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>let是用来代替var 声明变量</p>
+    <p>const是声明常量 consttant缩写</p>
+    <p>1 const是为了那些一旦被赋值就不希望被改变的情况而设计</p>
+    <p>2 const不可以先声明后赋值 会报错</p>
+    <p>3 const可以在不重新赋值的情况下修改它的值 注意是在不重新赋值的情况下</p>
+    <script>
+        var a = 12;
+        let b = 'zs';
+        const c = '132';
+        // let 和 var 可以重新赋值 因为其为变量可以改变
+        // 但是const是常量不可以重新赋值 会报错
+        console.log(a, b, c);
+
+        // 1 const 基本类型值修改
+        // 基本类型不支持修改
+
+        // 2 const 引用类型值修改
+        const person = { username: 'zhangsan' };
+        person.username = 'lisi';
+        console.log(person);
+    </script>
+    <p>开发经验 在不知道是否会修改这个值的时候 推挤使用const 如果以后报错则可以上找修改</p>
+
+</body>
+
+</html>
