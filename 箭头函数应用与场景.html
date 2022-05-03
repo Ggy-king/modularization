@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn {
+            /* display: inline-block; */
+            float: left;
+            margin: 50px;
+            border: 2px solid black;
+            background-color: #ccc;
+            width: 50px;
+            height: 50px;
+        }
+
+        #number {
+            float: left;
+            margin-top: 50px;
+            font-weight: 700;
+            font-size: 40px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <p>1 作为构造函数时不可以用箭头函数</p>
+    <p>2 需要用this指向调用对象时不可以用箭头函数</p>
+    <p>3 需要使用arguments的时候不可以使用箭头函数</p>
+    <span id="btn"></span>
+    <span id="number">0</span>
+    <script>
+        const oBtn = document.getElementById('btn');
+        const oNumber = document.getElementById('number');
+
+        // const obj = {
+        //     time: 0,
+        //     start: function () {
+        //         // 第一步清除定时器
+        //         // 第二步设节流锁
+        //         lock = true;
+        //         var claer;
+        //         var that = this;
+        //         oBtn.addEventListener('click', function () {
+        //             if (!lock) return;
+        //             lock = false;
+        //             clearInterval(claer);
+        //             claer = setInterval(function () {
+        //                 that.time++;
+        //                 oNumber.innerHTML = that.time;
+        //             }, 500);
+        //             setTimeout(function () {
+        //                 lock = true;
+        //             }, 1000);
+        //         }, false)
+        //     }
+        // }
+        // obj.start();
+        // 现在用更简单的箭头函数做 它就不需要一层一层考虑this指向问题
+        const obj = {
+            time: 0,
+            start: function () {
+                // 第一步清除定时器
+                // 第二步设节流锁
+                lock = true;
+                var claer;
+                // var that = this;
+                oBtn.addEventListener('click', () => {
+                    if (!lock) return;
+                    lock = false;
+                    clearInterval(claer);
+                    claer = setInterval(() => {
+                        this.time++;
+                        oNumber.innerHTML = this.time;
+                    }, 500);
+                    setTimeout(function () {
+                        lock = true;
+                    }, 1000);
+                }, false)
+            }
+        }
+        obj.start();
+    </script>
+
+</body>
+
+</html>

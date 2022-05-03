@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        模板字符串 用``来表示 在电脑左上角 它与'' ""没有太大区别 其在与其他变量等事件混合使用时比较方便
+    </p>
+    <p>用${}表示</p>
+    <p>1 换行 普通字符串 \n表示 模板字符串 可以直接换行 注意在模板字符串中所有换行缩进空格都会被保留在输出中</p>
+    <p>2 特殊字符用斜杠转义</p>
+    <p>3 ${} 中只要最后可以表达出值就可以向里面加 比如函数 比如在内计算都可以</p>
+    <script>
+        var person = {
+            name: '李四',
+            age: 18,
+            height: 152
+        };
+        console.log('我的名字是' + person.name + '，今年' + person.age + '岁了，身高是' + person.height + 'cm。');
+        // 或用``表示
+        console.log(`我的名字是${person.name}，今年${person.age}岁了，身高是${person.height}cm。`);
+    </script>
+</body>
+
+</html>

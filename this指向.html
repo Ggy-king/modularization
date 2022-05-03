@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 全局作用域this指向window</p>
+    <p>2 this指向与函数没有关系，只和谁在调用有关系</p>
+    <p>3 变量是全局的 用变量调用的话指向window</p>
+    <p>4 但构造函数中的this指向实例化生成之后的那个对象</p>
+    <script>
+        // 举例子
+        'use strict';  // 该代码为执行严格模式
+        function obj() {
+            console.log(this);
+        }
+        obj();  //undefined->window  在非严格模式下 是window调用 否则指向undefined
+        window.obj();  //这回你几把能看懂把 指向window啊 你个傻得
+    </script>
+
+
+    <p>1 箭头函数没有自己的this 注意是仅仅没有自己的this而已</p>
+    <p>2 箭头函数会通过作用域链向外部寻找</p>
+    <script>
+        const calc = {
+            add: function () {
+                const adder = () => {
+                    console.log(this);
+                };
+                adder();
+            }
+        }
+        calc.add();  //this 指向calc 其实是add中的this被calc调用
+        // 只要赋值在全局变量都是指向window 但要非情况
+    </script>
+</body>
+
+</html>

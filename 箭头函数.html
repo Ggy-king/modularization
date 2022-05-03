@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 有些人认为普通函数写起来太麻烦了，于是创造了箭头函数（显然我并不认为麻烦）</p>
+    <p>1 () => {} 此为箭头函数的创建形式 但其无法调用 现在还没有解决 故只能通过变量赋值的方法来创建</p>
+    <script>
+        let arrow = (x, y) => {
+            return x + y;
+        }
+        console.log(arrow(1, 2));
+    </script>
+
+    <p>1 只有一个参数的时候 可以省略圆括号</p>
+    <p>2 只有一行函数语句体的时候 可以省略尖括号和return</p>
+    <p>3 只有一行函数语句体 但行语句体是对象的时候 省略return 在尖括号外加园括号</p>
+    <script>
+        const add = x => {
+            return x + 1;
+        }
+        console.log(add(3));
+
+
+        const add2 = x => x + 1;
+        const add3 = (x, y) => x - y + 1;
+
+        console.log(add2(6, 9)); //多参数选第一个
+        console.log(add3(6, 9));
+
+
+        const add4 = (x, y) => ({
+            value: x + y
+        })
+        console.log(add4(3, 6));
+
+    </script>
+</body>
+
+</html>
