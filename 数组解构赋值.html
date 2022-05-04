@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 1 认识解构赋值
+        // const arr = [1, 2, 3, 4];
+        // const a = arr[0];
+        // const b = arr[1];
+        // const c = arr[2];
+        // const d = arr[3];
+        // console.log(a, b, c, d);
+
+        // 2 什么是解构赋值
+        // 解析某个数据的结构 将我们想要的东西提取出来 赋值给变量或常量
+        const [a, b, c, d] = [1, 2, 3, 4];
+        console.log(a, b, c, d);
+        // 3
+        const [aa, [, , u], cc] = [7, [8, 9, 6], 5];
+        console.log(aa, cc, u); //aa == 7  cc == 5  u == 6
+    </script>
+    <p>3 模式（结构）匹配</p>
+    <p>4 索引值相同的完成赋值 不取的直接用,跳过</p>
+    <script>
+        // 默认值
+        const [a1 = 1, b1 = 2] = [];
+        console.log(a1, b1);
+
+        const [a2 = 7, b2 = 8] = [null, 'a'];
+        console.log(a2, b2);
+
+        const [a3 = 1, b3 = 2] = [5];
+        console.log(a3, b3);  // 5 2
+    </script>
+    <p>5 默认值是可以在前变量值中直接赋值 前提条件是该数组成员必须严格等于undefined时才会生效</p>
+    <p>6 如果默认是是表达式 默认值表达式是惰性求值的 用到默认值的时候浏览器才会执行</p>
+
+    <script>
+        // NodeList
+        console.log(document.querySelectorAll('p'));
+        const [aaa, bbb, ccc, ddd] = document.querySelectorAll('p');
+        console.log(aaa, ddd);
+
+        // 函数参数的结构赋值
+        const array = [1, 2];
+        // const add = arr => arr[0] + arr[1];
+        const add = ([x, y]) => x + y;
+        console.log(add(array));
+
+        // 交换变量
+        let m = 1;
+        let n = 2;
+        // let tep = m;
+        // m = n;
+        // n = tep;
+        // console.log(m, n);
+        [n, m] = [m, n];    //简单吧
+        console.log(m, n);
+
+    </script>
+
+</body>
+
+</html>

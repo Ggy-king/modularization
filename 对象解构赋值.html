@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>默认值数组和函数都是等号连接 默认值是表达式的话惰性求值</p>
+    <p>将一个已经声明的变量用于结构赋值 需要用圆括号包裹起来 否则系统认为{}为块级作用域
+        let a = 2;
+        ({a} = {a:1});
+
+    </p>
+    <p>可以取到继承的属性</p>
+    <p></p>
+    <script>
+        // 1 模式结构匹配
+        // {} = {}
+
+        // 2 属性名相同的完全赋值  属性名只要相同就行 顺序可以乱
+        const { age, username } = { username: '张三', age: 18 };
+        // 3 取别名
+        const { aa: bb, cc: dd } = { aa: 18, cc: 46 };
+        console.log(bb, dd);
+
+        // 4 继承
+        const { toString } = {};
+        console.log(toString);
+        console.log(Object.prototype);
+
+        //5 函数参数的结构赋值
+        const logPersonlnfo = ({ ages = 0, users = 'lisi' }) => console.log(users, ages);
+        logPersonlnfo({});
+
+        // 6 复杂的嵌套
+        const obj = {
+            x: 1,
+            y: [2, 3, 4, 5],
+            z: { aa: 6, ss: 7 }
+        }
+        const { y: [, , yy], z: { ss: ss } } = obj;
+        const { y: y } = obj;
+        console.log(yy, ss, y)   //这个时候的y就是obj.y所对应的数组
+
+    </script>
+
+</body>
+
+</html>

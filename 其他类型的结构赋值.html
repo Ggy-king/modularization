@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 字符串的解构赋值
+        //  以数组的形式
+        const [a, b] = 'hello';
+        console.log(a, b);
+        //  以对象的形式 注意此时对象的属性是字符串的下标
+        const { 1: c, 2: d, length } = 'hello';
+        console.log(c, d, length);
+        // 2 数值和布尔类型的解构赋值
+        //  它会变成对象 不过好像没啥卵用
+        const { e = 9, toString } = 123;
+        console.log(e);
+        const { f = 8 } = true;
+        console.log(f);
+        // 3 undefined null 的解构赋值
+        //    会尝试转化成对象 但无法转换 会报错 即无法解构赋值
+    </script>
+</body>
+
+</html>
