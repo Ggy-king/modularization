@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width= device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        点语法其实是方括号语法的特殊形式
+        person.age 等价于 person['age']
+    </p>
+    <p>
+        他们有个很大的区别是 属性名是合法命名时可以使用点语法 其余情况可以使用方括号
+    </p>
+    <script>
+        // 1 字面量的属性增强 即更简单的写法
+        const a = 12;
+        const person = {
+            // a:a;
+            a,   //简写 上面已经定义 则可以不写值
+            // speak:function(){
+
+            // }
+            speak() { }   //方法可以省略冒号function
+        }
+        console.log(person.a);
+
+        // 2 方括号语法 更简单
+        const porp = 'age';
+        const ppo = {
+            // 简写增强
+            [porp]:18   //直接方括号添加属性
+        };
+        // 加入age属性
+        // ppo[porp] = 18;
+        // console.log(ppo);
+
+        // 3 方括号中只要是值都可以放进来
+        // 如 [fun(){}]  ['sex'] ['s' + 'es']
+
+        
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Object.assign() 合并对象 构造函数 此函数不返回新对象 后对象添加到前对象上 小技巧前面可以放一个空对象等价于{...a,...b}</p>
+    <p>Object.keys()键 Object.values()值 Object.entries()键值返回的是二维数组 </p>
+
+</body>
+<script>
+    // 1
+    a = {
+        name: 'flex',
+        value: 15,
+        ss: 445
+    };
+    b = {
+        name: 'kleisi',
+        value: 14
+    };
+    console.log(Object.assign(a, b));
+
+    // 应用 合并默认参数和用户参数
+    const logUser = userOptions => {
+        const DEFAULTS = {
+            username: 'zhangsan',
+            age: 0,
+            sex: 'male'
+        }
+
+        const options = Object.assign({}, DEFAULTS, userOptions);
+        console.log(options)
+    };
+    logUser({ username: 'Alex' });
+    logUser();
+    // 2
+    console.log(Object.keys(a, b));
+    console.log(Object.values(a, b));
+    console.log(Object.entries(a, b));
+
+
+</script>
+
+</html>

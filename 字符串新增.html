@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 includes('字符','起始下标位置') 查找字符是否存在  网址</p>
+    <p>2 '需要补的字符'.padStrat(字符串总长,'补全的字符') 从头部开始补全字符  日期</p>
+    <p>3 '需要补的字符'.padEnd(字符串总长,'补全的字符') 从尾部开始补全字符   日期</p>
+    <p>4 trimStart() = trimLeft() 去除头部空格  表单提交</p>
+    <p>5 trimEnd() = trimRight() 去除尾部空格</p>
+    <p>6 trim() 去除首尾空格</p>
+    <script>
+        // 1
+        'abc'.includes('a');    //true
+        'abc'.includes('ac')    //flase
+
+        'abc'.includes('a', 0);    //true
+        'abc'.includes('a', 1);    //flase
+
+        // 应用
+        // https://www.cc364.com
+        // https://www.cc364.com?c=fe&pop&
+        // name=value
+        let url = 'https://www.cc364.com';
+        const addURLparam = (url, name, value) => {
+            url += url.includes('?') ? '&' : '?';
+            // if (url.includes('?&')) {
+            //     url.replace('?&', '?');
+            // }
+            url += `${name}=${value}`;
+            return url;
+        }
+        url = addURLparam(url, 'c', 'fe');
+        console.log(url);
+        url = addURLparam(url, 'sort', 'pop');
+        console.log(url);
+
+        // 2
+        // 原字符串的长度，大于或等于最大长度，则补全字符失效，保留原字符串
+        // 默认空格补全长度
+        console.log('x'.padStart(5, 'ab'));
+        console.log('x'.padEnd(10, 'ab'));
+
+
+
+
+    </script>
+
+</body>
+
+</html>

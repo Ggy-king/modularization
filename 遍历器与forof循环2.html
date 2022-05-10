@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>1 什么是可遍历
+        只要具有Symbol.iterator方法 并且这个方法可以生成可遍历对象的，就是可遍历
+    </p>
+    <p>2 可遍历的对象有哪些
+        数组
+        字符串
+        Set
+        Map
+        arguments
+        NodeList
+    </p>
+    <p>3 非原生可遍历对象
+        比如对象 不具有iterator
+    </p>
+    <p>4 特殊非原生 对象中有索引值与长度
+        可以 obj[Symbol.iterator] = Array.prototype[Symbol.iterator]
+    </p>
+    
+</body>
+</html>

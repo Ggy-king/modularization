@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在调用Math等方法不可以使用数组作为参数 故今天学习展开运算符
+        // 即也是用...来作为展开运算符
+        console.log(Math.min(...[1, 2, 3]));
+
+        // 1 与剩余参数的区别
+        // 展开运算符
+        //   [1,2,3] -> 1,2,3
+        // 剩余参数
+        //   1,2,3 -> [1,2,3]
+        console.log(...[1, 2, 3, [5, 6, [7]]]);
+
+    </script>
+    <p>1 数组展开的应用
+        1 复制数组（直接就是深克隆）
+        const a = [1,2];
+        const b = [...a];
+        2 合并数组
+        const a = [1,2];
+        const b = [2,3,4];
+        const c = [5];
+        const sum = [...a,...b,...c];
+        3 字符串转为数组 字符串可以按数组的形式展开
+        ...'alex' == a l e x;
+        [...'alex'] == ["a","l","e","x"];
+        4 常见的数组转化为数组
+        arguments 转化 [...arguments]
+        NodeList 转化 [...NodeList]
+    </p>
+    <p>2 对象展开的应用
+        1 对象展开表达式 {...abc} 是尖括号
+        2 对象展开之后为新对象 这点要记住
+        3 合并对象 注意后者属性会覆盖前者 不同属性添加就行
+        a{},b{}
+        c{...a,...b}
+        4 不覆盖的话{a,b}
+    </p>
+    <p>3 对象展开的注意事项
+        1 非对象的展开 系统会先尝试把它转为对象 再罗列出属性 其实展开就是一个空对象 但里面若是字符串则会是类似数组的对象
+        字符串在对象中展开类似数组在对象中展开
+        2 对象中的对象属性是不会展开的  若合并时共有某对象是不会添加覆盖的 会直接压盖
+
+    </p>
+    <script>
+        console.log({ ...'alex' });
+    </script>
+
+</body>
+
+</html>

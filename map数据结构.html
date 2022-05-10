@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <p>map 类似对象 是对象的集合</p>
+    <p>map 构造方法 new Map</p>
+    <P>map与对象的区别 对象的键只能是字符串 但map的键几乎都可以</P>
+
+    <p>map 中只能传递二维数组且要体现出键值的思想</p>
+    <p>map 中传的set也需要是二维数组</p>
+
+    <p>也遵循严格相等 除了NaN</p>
+    <p>如果只是需要key -> value的结构，或者需要字符串以外的值时用map更合适</p>
+    <p>遍历 foeEach for in</p>
+    <p>只有需要模拟现实世界的时候，才使用对象</p>
+    <script>
+        const a = new Map();
+        a.set('name', 'zhangsan');
+        a.set('age', 18);
+        a.set(true, '真');
+        a.set({}, 'object');
+        a.set(undefined, 'undefined');
+        console.log(a);
+        // 1 方法 set 键存在 后添加覆盖先前 类似add   但是set还可以获取成员
+
+
+        // 2 方法 get  得到
+        console.log(a.get('age'));
+
+        // 3 方法 has 是否拥有
+
+        // 4 方法 delete 删除某元素
+
+        // 5 clear 全部删除
+
+        // 6 forEach 遍历
+        // a.forEach(function (value, key, map) { }, this指向)
+
+        // 1 属性 size
+        // 与set一样
+
+
+    </script>
+    <script>
+        const b = new Map([
+            ['as', 56],
+            ['ss', 'dd']
+        ]
+
+        );
+        const c = new Map(new Set(
+            [[true, 'true'],
+            ['asas', 456]]
+        ));
+        const d = new Map(b);
+        console.log(b, c, d);
+
+    </script>
+    <script>
+        const [d1, d2, d3] = document.querySelectorAll('div');
+        const m = new Map();
+        m.set(d1, { color: 'red', backgroundColor: 'yellow', fontSize: '15px' }).set(d2, { color: 'green', backgroundColor: 'pink', fontSize: '25px' }).set(d3, { color: 'black', backgroundColor: '#ccc', fontSize: '40px' });
+        m.forEach((propObj, element) => {
+            for (const p in propObj) {
+                element.style[p] = propObj[p];
+            }
+        })
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 iterator 遍历</p>
+    <p>注 iterator是为了统一遍历方法 数组对象都可以用</p>
+    <p>2 Symbol.iterator 可遍历对象的生成方法</p>
+    <script>
+        const a = [1, 2][Symbol.iterator]();   // a为可遍历对象（可迭代对象）
+        console.log(a.next());  //{value: 1, done: false}  value值  done是否遍历完成
+        console.log(a.next());  //{value: 2, done: false}
+        console.log(a.next());  //{value: undefined, done: true}
+        const b = [Symbol.iterator];
+        console.log(a);
+        console.log(b);
+    </script>
+    <p>for of循环 简而言之就是对iterator的升级</p>
+    <p>在for of 中取得索引值 keys() 值value和直接打印没区别</p>
+    <p>在foe of中都想获得使用entries() 获得下标与值组成的数组</p>
+    <script>
+        // 1
+        const c = [2, 3, 4, 5];
+        const cit = c[Symbol.iterator]();
+        let next = cit.next();
+        while (!next.done) {
+            console.log(next.value);
+            next = cit.next();
+        }
+
+        // 2 for (const iterator of object){}
+        for (const em of c) {
+            console.log(em);
+
+        }
+        // 3
+        for (const key of c.keys()) {
+            console.log(key);
+        }
+        for (const key of c.values()) {
+            console.log(key);
+        }
+        for (const entries of c.entries()) {
+            console.log(entries);
+        }
+        // 解构
+        for (const [index, value] of c.entries()) {
+            console.log(index, value);
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>

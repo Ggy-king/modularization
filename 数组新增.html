@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 includes('字符','起始下标位置') 判断是否存在 遵循严格相等 应用去重</p>
+    <p>2 Array.from() 构造函数 将其他类型转换成数组
+        第二个参数类似Map方法可以对每个元素进行操作 完成之后返回值
+        第三个参数 修改this指向
+        所有可遍历的都可以使用
+        拥有length属性的任意对象 数组的长度由length决定
+    </p>
+
+
+    <p>3 find() 找到满足条件的一个立刻返回</p>
+    <p>4 findIndex() 找到满足条件的，立刻返回它的索引值</p>
+
+</body>
+<script>
+    // 1
+    const arr = [];
+    for (const item of [1, 2, 3, 1, 2]) {
+        if (!arr.includes(item)) {
+            arr.push(item);
+        }
+    }
+    console.log(arr);
+    // 2
+    console.log(Array.from('str'));
+    console.log(Array.from('126', value => value * 2));
+    // 3
+    console.log([1, 2, 5, 9, 45].find((value, index, arr) => {
+        return value > 8;
+    }));
+    console.log([1, 2, 5, 9, 45].findIndex((value, index, arr) => {
+        return value > 8;
+    }));
+    const a = [
+        {
+            name: 'li',
+            age: 18,
+            sex: 'male'
+        },
+        {
+            name: 'zhang',
+            age: 17,
+            sex: 'ma'
+        }, {
+            name: 'hua',
+            age: 45,
+            sex: 'cc'
+        }
+    ];
+    console.log(a.find(value => value.sex === 'male'));
+
+
+</script>
+
+</html>

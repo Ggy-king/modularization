@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 剩余参数表示 ： ...参数名
+        // 2 传入参数先考虑固定参数 后是剩余参数
+        // 3 剩余参数为为数组装着
+        const add = (x, y, ...ags) => { };
+        // 1 ...参数名 可以代替arguments 且比他更好因为arguments是类数组 而...是真数组
+        // 2 剩余参数只能是最后一个参数 且后面不能有其他参数
+        // 3 剩余参数也可以是对象
+        const { a, b, ...c } = { a: 1, x: 2, y: 3, b: 4 };
+        console.log(c);
+    </script>
+
+</body>
+
+</html>

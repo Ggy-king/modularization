@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 函数的默认值指在函数没有传递参数的时候使用默认值</p>
+    <p>2 可以使用if语句判断其类型是不是undefined在赋值默认值</p>
+    <p>3 设置函数参数的默认值最好从右边开始设置</p>
+    <p>计算时null 有时会当做零来看</p>
+    <script>
+        // const multipil = (x, y) => {
+        //     if (typeof y === 'undefined') {
+        //         y = 1;
+        //     }
+        //     return x * y;
+        // }
+        // console.log(multipil(2));   麻烦
+        const multipil = (x, y = 9) => x * y;
+        console.log(multipil(2));
+    </script>
+
+    <script>
+        // 1 接收很多参数的时候 下面这种方法不实用 因为函数还得记忆参数位置
+        const logUser = (uesrname = 'Zahngsan', age = 0, sex = 'male') => console.log(uesrname, age, sex);
+        logUser('lisi', 15, 'male');
+        logUser();
+        // 2 我们采用对象记录函数
+        const logUser2 = options => console.log(options.username, options.age, options.sex);
+        logUser2({
+            username: 'wangwu',
+            age: 56,
+            sex: 'male'
+        });
+        // 2.2 解构赋值更简化
+        const logUser3 = ({ username = '132', sex = '132', age = '132' } = {}) => console.log(username, age, sex);
+        logUser3({
+            username: 'wangwu',
+            age: 56,
+            sex: 'male'
+        });
+        // 如果什么都不传 相当于是对undefined进行解构赋值 会报错
+        // 解决方案是在函数参数后解构赋值一个尖括号 即此时解构是对一个空对象解构
+        // { username = '132', sex = '132', age = '132' } = { }   不会报错
+        // { username = '132', sex = '132', age = '132' } = undefined
+    </script>
+</body>
+
+</html>
