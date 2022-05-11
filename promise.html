@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 promise 一般是用来解决层层嵌套的回调函数问题 也叫回调地狱 callback hell</p>
+    <p>2 实例化构造函数生成实例对象 new Promise(这里必须有回调函数) 注意promise是解决回调地狱的而不是解决回调函数的</p>
+    <p>3 promise()中resolve()和reject()函数中是可以传入参数的 注意在then中接收 形参是不需要一样的</p>
+    <p>4 Promise一旦发生变化 就不会再改变了</p>
+    <p>5 then()方法 里面有两个函数 第一个在成功状态下执行 第二个在失败状态下执行</p>
+    <p>6 then()返回值为一个新的Promise函数 注意then函数后可以无限调用then方法 后一个then由前一个then决定</p>
+    <p>7 很重要 多次执行函数用then连接</p>
+    <script>
+        // promise是异步操作的解决方案
+        // 异步 比如回调函数
+        document.addEventListener('click', function () {
+            console.log('这里是异步的');
+        }, false);
+        console.log('这里是同步的');
+        // 2
+        const a = new Promise((resolve, reject) => { });   //Promise{<pending>}   等待状态
+        const b = new Promise((resolve, reject) => {
+            resolve();
+        })   //Promise{<fulfilled>}   成功状态
+        const c = new Promise((resolve, reject) => {
+            reject();
+        });   //报错  失败状态
+
+        // 3 
+        b.then(() => {
+            console.log('fuifilled');
+        }, () => {
+            console.log('reject');
+        });
+        c.then(() => {
+            console.log('fuifilled');
+        }, () => {
+            console.log('reject');
+        });
+
+        // 4 
+        c.then(
+            () => { console.log('success') },
+            () => {
+                console.log('err');
+
+                // 在then的回调函数中，return(默认就有undefinded)后面的东西，会用Promise包装一下
+                // 等价于
+                // return undefined;
+                // 等价于   
+                // return new Promise(resolve => {
+                //     resolve(undefined);
+                // });
+
+                // 默认返回的永远都是成功状态的Promise对象  想返回失败在自己构造一下
+                return new Promise((resolve, reject) => {
+                    reject();
+                })
+
+
+            }
+        ).then(
+            date => { console.log('success2', date) },  //date是上一个你要传的东西数据
+            () => { console.log('err2') }
+        )
+    </script>
+
+</body>
+
+</html>
