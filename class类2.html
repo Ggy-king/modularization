@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 私有属性和方法 一般情况下类的属性和方法都是公开的 公有属性是可以被修改的会造成一些想不到的错误</p>
+    <p>2 可以通过构造函数方法 即调用class内的一些方法来获得值 而不是通过属性来获得值</p>
+    <p>3 模拟私有属性和发法 约定_开头的类名为私有 行业规定 不具备很强的约束力</p>
+    <p>4 将私有属性和方法移出类 即模块化建立一函数在函数内声明变量 该变量无法被外界访问 注意不要this指向</p>
+
+</body>
+<script>
+    // 1
+    class Person {
+        constructor(name) {
+            this._name = name;
+
+        }
+        speak() {
+            console.log('speak');
+        }
+
+        getName() {
+            return this._name;
+        }
+    }
+
+    const p = new Person('Alex');
+    console.log(p.name);   //这样就访问不到了
+    console.log(p.getName());
+
+    // 2
+    (function () {
+        let name = '';   //本来name是class中的东西 但你把它移出去了本质是对封装的一种破坏 但没事
+        class Persona {
+            constructor(username) {
+                name = username;
+
+            }
+            speak() {
+                cons
+
+                ole.log('speak');
+            }
+
+            getName() {
+                return name;
+            }
+        }
+        window.Persona = Persona;
+    })();
+    (function () {
+        const a = new Persona('Al');
+        console.log(a.name);
+        console.log(a.getName());
+    })();
+</script>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 服务器搭建 通过插件live server 简单学习推荐 -->
+    <p>1 Module模块</p>
+    <p>2 先是模块化概念 把文件拆分成多块 实现更简单的代码工整</p>
+    <p>3 防止多全局变量采用立刻调用函数形式进行包装 通过window.名= 的方式暴露变量</p>
+    <p>4 模块系统 解决模块化的问题 消除全局变量 管理加载顺序</p>
+
+
+
+    <p>1 import form 导入 export default 导出</p>
+    <p>2 导出导入到最后在主文件下只需要引入一个文件 但此时为普通文件 需要添加 type = "module" 一个文件就是一个模块</p>
+    <script src="" type="module"></script>
+    <script type="module">
+        import name from '文件地址'; // 导入 从文件地址导入变量name;
+        export default name;   //导出  在该文件下导出name;
+    </script>
+
+
+
+    <p>1 一个模块没有导出 也可以被导入 导入的代码执行一遍且只执行一遍</p>
+    <p>2 导出后的变量 另文件导入是变量名可另起 但不推荐 注意一个模块通过export default只能导出一个变量或常量</p>
+    <script>
+        import '文件名';
+        // export default 20;
+        // export default age;
+        // export default function(){};
+        // export default class{};
+        // export default {};
+    </script>
+
+
+    <p>1 export 方法基本用法 多个导入 导入导出时起别名 整体导入 同时导入</p>
+    <p>2 import {名} form '文件' 对应export方法 名字必须与导出一样</p>
+    <p>3 可以写一个导一个 或最后花括号用逗号间隔导出</p>
+    <p>4 导出改名 需要用as</p>
+    <p>5 整体导入 * as 名</p>
+    <p>6 同时导入 import可以多次使用同时导入</p>
+    <script type="module">
+        // export const age = 18;  这个方法必须导出声明或语句
+        export { age };  // 方便记忆导入导出都可以用花括号
+        export { ss as dd, fn };   //as 操作换名
+        // 在有很多导出的东西时，可以导入一个对象
+        import * as obj from '文件';
+        // export default 18;  //注意export和export default可以同时存在 且整体导入时二者导出的在同一对象中
+    </script>
+
+</body>
+
+</html>

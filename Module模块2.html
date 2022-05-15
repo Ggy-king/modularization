@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>1 this指向</p>
+    <p>2 import关键字 import命令会有提升效果 不管你写在哪里 在哪里引入的文件都会率先执行</p>
+    <p>3 import export 命令只能在顶层，不能在代码块中执行</p>
+    <p>4 import()方法就是解决上面问题 它可以让我们按需导入</p>
+    <p>5 导入导出复合写法  export{age} from '文件'  即用完在导出</p>
+    <script type="module">
+        // console.error('什么东西');
+        // 1 模块顶层的this指向
+        import 'hh';
+        // 在模块中顶层的this指向undefined 引入的  若不按模块加载 则this指向window
+        if(PC){
+            import('pc.js').then().catch();
+        }else if(Mobile){
+            import('mobile.js').then().catch();
+        }     //提案 有兼容问题
+
+
+        export {age} from 'wenjain';   //当前文件无法访问age
+        // 等价于
+        import {age} from 'wenjian';
+        export {age} from 'wenjian';  //当前文件可以访问age 不完全等价
+    </script>
+
+    <p>1 开发时可以把变量独创一个文件导出</p>
+
+</body>
+
+</html>

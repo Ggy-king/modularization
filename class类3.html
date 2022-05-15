@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 extends 继承 子类会继承父类所有属性及方法包括静态</p>
+    <p>2 子类若与父类有同名 则子类覆盖父类  继承到的都可以修改</p>
+
+    <p>3 super()作为函数 代表父类的构造方法，只能用在子类的构造方法中 其他地方报错</p>
+    <p>4 super()虽然代表了父类的构造方法，但是内部的this指向子类的实例</p>
+
+    <p>5 super 作为对象来使用  在构造方法中或一般方法中使用super代表父类的原型对象Person.prototype</p>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+                this.say = function () {
+                    console.log('hello');
+
+                }
+            }
+            speak() {
+                console.log('动态')
+            }
+
+            static speak() {
+                console.log('说你吗')
+            }
+
+        }
+        Person.version = '1.0';
+
+        class Programmer extends Person {
+            constructor(name, age) {         //构造必须在在子类中引入一下
+                super(name, age)           //引入父类参数
+
+                // 属性在这里添加 但this操作不能在super前加  因为此时this无继承会报错
+            }
+
+            // 不同名的都可以添加
+        }
+        const extend = new Programmer('zs', 18);
+        console.log(extend);
+
+    </script>
+
+</body>
+
+</html>

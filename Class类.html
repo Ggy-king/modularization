@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 学多了不要忘 在class中定义函数 在consturctor中用this在调用 最后new出实例才算完成调用  -->
+</head>
+
+<body>
+    <p>
+        1 类可以看做是对象的模板 用一个类可以创造出许多不同的对象
+    </p>
+    <p>2 声明 class 类名 {} 不要有括号和分号</p>
+    <p>3 所有的Class都需要有构造方法 constructor(){}</p>
+    <p>4 class是类 想要调用必须实例化</p>
+    <p>5 方法之间没有逗号 对象之间有不要混了</p>
+    <p>6 与构造函数的区别 1 构造函数的方法是另写在原型上的 而class类之间定义在类里（在class定义在其内函数原型上依然能找到方法）</p>
+
+
+
+    <p>1 声明形式与表达式形式</p>
+    <p>2 立即执行的类</p>
+
+    <p>1 实例属性 构造的方法 this.形参 = 实参 this.name = name class新方法 如无任何声明且不再class中的任何方法中可直接就 属性名 = 默认值</p>
+    <p>2 方法就是值为函数的特殊属性</p>
+    <p>3 静态方法 就是类的方法（即不需要实例化就可以调用的方法） 之前都是实例的方法</p>
+    <p>4 static 名（）{}创建静态的方法的关键字</p>
+
+</body>
+<script>
+    class Person {
+        // 构造方法不写也不报错
+        constructor(name, age) {
+            console.log('实例化时会执行构造方法');
+            this.name = name;
+            this.age = age;
+            // 不建议这里写方法 因为它会构造出无法个方法 占内存
+            this.speaker = () => { }
+        }
+
+
+        // 与constructor平行 建议写方法此时是共享方法的
+        speak() { }
+    }
+
+    // 实例化的时候一般都传参  在构造方法中接收
+    const p = new Person('Lisi', 15);
+    console.log(p.age);
+    console.log(p.name);
+</script>
+
+
+<script>
+    // 声明形式
+    class Run {
+        constructor() { }
+        speak() { }
+    }
+
+    // 表达式形式
+    // 构造函数
+    const Props = function () { }
+    // class
+    const app = class {      //匿名
+        constructor() { }
+    }
+
+    // 想要立即调用class类 采取llfe方法需要加new构造
+    new (class {
+        constructor() {
+            console.log('hello');
+        }
+    })()
+</script>
+
+
+
+<script>
+    // 1
+    class Roat {
+        age = 0;
+        sex = 'male';
+        getSex = function () {
+            return this.sex;
+        };
+        // constructor(){}
+    }
+    // 不要忘了他是类需要实例化
+    const s = new Roat();
+    console.log(s.getSex());
+
+    // 2静态方法及静态属性
+    class Pro {
+        static apple() {
+            console.log('我是静态 与实例不冲突');
+            // this指向class本身
+        }
+        static version = '1.0';   //该方法也可以声明静态属性 但不提倡因为该方法有兼容问题
+        static version (){
+            return '1.0'      //改成这种写法推荐
+        }
+
+
+
+        apple() {
+            console.log('我是动态 与静态不冲突');
+        }
+    }
+    console.log(Pro.apple());
+    const aa = new Pro();
+    console.log(aa.apple());
+
+</script>
+
+</html>
