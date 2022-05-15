@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 catch()方法 可以用then专门处理成功的状态 用catch()专门处理失败的状态</p>
+    <p>2 throw new Error(''); 抛出一个错误</p>
+    <p>3 finally()方法 多用于后端关闭数据库 本质上式then的特例</p>
+    <script>
+        // catch() 等价于
+        // then(null,()=>{});
+        new Promise((reslove, reject) => {
+            // reslove(521);
+            reject(1314);
+        })
+            .then(date => console.log(date))
+            .catch(
+                date => {
+                    console.log(date);
+                    throw new Error('reason');
+                }
+            ).then(null, (date) => console.log(date));
+
+        // 2 
+        // finally()当promise状态发生变化时无论怎样变化都会发生 不变化不执行
+    </script>
+
+    <p>1 Promise.resolve()构造函数
+        一般参数可传递，像对象函数等传递并不会按想的那样执行
+    </p>
+    <p>2 Promise.reject() 没有参数问题 都会原封不动的向后传递</p>
+
+
+    <script>
+        new Promise(resolve => resolve('2'));
+        // 这样写麻烦 所以有了简写
+        Promise.resolve('2');
+
+        // 失败状态下的简写
+        Promise.reject();
+    </script>
+
+
+    <p>1 Promise.all() 寻找多个Promise对象 都完成之后才调用
+        其状态受里面的影响 只有都成功才能成功 有一个失败 则都失败 &&
+    </p>
+    <p>2 promise.race() 类似all 寻找多个但是影响它是第一个Promise 一错都错 一对都对</p>
+    <p>2 promise.allSettled() 该函数的状态与传入的Promise状态无关 它永远都是成功的
+        它的作用主要是记录每一个Promise的表现
+    </p>
+
+
+    <script>
+        const delay = ms => {
+            return new Promise(reslove => {
+                setTimeout(reslove, ms);
+            });
+        };
+        const p1 = delay(1000).then(() => {
+            console.log('p1完成了');
+            return 'p1';
+        });
+
+        const p2 = delay(1000).then(() => {
+            console.log('p2完成了');
+            return 'p2';
+        });
+
+        const p = Promise.all([p1, p2]);
+
+        p.then(data => {
+            console.log(data);
+        }, err => {
+            console.log(err);
+        });
+        // ''''''''''''''''
+        const s = Promise.allSettled([p1, p2]);
+
+        s.then(data => {
+            console.log(data);
+        }, err => {
+            console.log(err);
+        });
+
+    </script>
+    <!-- 推荐在调用resolve reject函数时加上return 不在执行他们后面的代码  -->
+    <!-- promise.all/Promise.allSettled/Promise.race 参数如果不是Promise数组 会将不是Promise的数组元素转变成Promise对象 -->
+    <!-- 任何可遍历的都可以作为参数 -->
+
+</body>
+
+</html>
