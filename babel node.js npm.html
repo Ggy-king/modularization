@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        1 babel 概念 简而言之 babel其实是下一代js的编译器 将最新的js编译成老版本浏览器都可以兼容的代码的编译器
+           如 将ES6转化成ES5.4.3    
+    </p>
+    <p>2 babel 可以将绝大部分语法变量等成功转换我们所需要的 但是想ES6新增 Promise Set Map等方法是不会转的需要引入其他模块 (感觉现在都兼容了)</p>
+    <p>3 仅靠babel 不能完成全部工作  一般配合Webpack</p>
+
+    <script>
+        let name = 'Alex';
+        const age = 18;
+
+        const add = (x,y) => x + y;
+
+        new Promise((resolve,reject) => {
+            resolve('成功');
+        }).then(value => {
+            console.log(value);
+        }).catch(value => console.log(value));
+
+        Array.from([1,2]);
+
+        class Person {
+            constructor(name,age){
+                Object.assign(this,{name,age});
+            }
+        }
+
+        new Person('Alex',18);
+
+        import 'wenjain'
+    </script>
+
+    <p>1 使用babel 大部分在官网进行操作 不需太过关心操作问题</p>
+    <p>2 babel官网中setup   关注CLI 和 Webpack  一般不在网页上直接编译太耗费性能</p>
+    <p>3 小技巧 直接在某文件地址栏上输入cmd打开该文件目录下的cmd</p>
+
+    <p>1 准备工作 Node.js是个平台或工具 对应浏览器  如果是代指语言即后端的js</p>
+    <p>2 后端的js = ECMScript + IO + File + ...等服务器后端的操作（IO 输入输出）File(文件操作)</p>
+    <p>3 npm是node包（模块 插件）管理工具</p>
+    <p>4 初始化项目npm init 生成package</p>
+    <p>npm install --save-dev @babel/core @babel/cli  此写法会随版本改变 不稳定 
+        npm install --save-dev @babel/core@7.11.0 @babel/cli@7.10.5  这种写法可以固定一个版本
+    </p>
+    <p>有了package.json这个文件 以后无论是文件丢失还是换电脑还是分享代码直接就分享这个文件就行</p>
+    <p>丢失找回 直接就是npm install就行会自动执行package.json所有代码</p>
+
+    <!-- babel src -d dist      src输入目录 -d指令 dist输出目录-->
+    <!-- babel src --out-dir  -->
+
+    <!-- build即为命令名 -->
+</body>
+</html>
