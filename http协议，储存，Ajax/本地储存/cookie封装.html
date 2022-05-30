@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="cn">中文</button>
+    <button id="en">英文</button>
+
+    <script type="module">
+
+        // 测试
+        // import { set, get, remove } from './cookie.js';
+        // set('username', 'zhangsan');
+        // set('用户名', '张三', {
+        //     maxAge: 30 * 60 * 3600
+        // });
+
+        // remove('username');
+
+        // console.log(get('username'));
+        // console.log(get('用户名'));
+
+
+
+        // 实现语言切换
+
+        import { set, get, remove } from './cookie.js';
+
+        const cnBtn = document.getElementById('cn');
+        const enBtn = document.getElementById('en');
+
+        cnBtn.addEventListener('click', function () {
+            set('language', 'cn', {
+                maxAge: 30 * 24 * 3600
+            });
+            window.location = './cookie封装.html';
+        }, false);
+        enBtn.addEventListener('click', function () {
+            set('language', 'en', {
+                maxAge: 30 * 24 * 3600
+            });
+            window.location = './cookie封装.html';
+        }, false);
+    </script>
+
+</body>
+
+</html>

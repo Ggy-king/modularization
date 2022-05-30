@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 GET携带数据 GET不能通过请求体携带 只能通过请求头 如下面的网址?之后的为GET携带的数据
+        const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== 4) return;
+
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                console.log(xhr.responseText);
+                console.log(typeof xhr.responseText);
+            }
+        };
+        xhr.open('GET', url, true);
+        xhr.send(null);
+
+        // 2 数据编码 非英文字母的需要编码 一样可以用encodeURLComponent()
+
+        // 1 POST携带数据 可以在请求体中携带数据 
+        const url1 = 'https://www.imooc.com/api/http/search/suggest?words=js';
+        const xhr1 = new XMLHttpRequest();
+        xhr1.onreadystatechange = () => {
+            if (xhr1.readyState !== 4) return;
+
+            if ((xhr1.status >= 200 && xhr1.status < 300) || xhr1.status === 304) {
+                console.log(xhr1.responseText);
+                console.log(typeof xhr1.responseText);
+            }
+        };
+        xhr1.open('POST', url1, true);
+        // 传入参数的格式应该与后端人员约定好
+        xhr1.send('username=alex&age=18');
+        // 不能直接传递对象 学完json可以解决这个难题
+        // xhr1.send({
+        //     username:alex,
+        //     age:15
+        // });
+
+
+
+        // 2 数据编码 非英文字母的需要编码 一样可以用encodeURLComponent()
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Ajax -->
+    <p>1 Ajax 是异步javascript和XML的简写</p>
+    <p>2 Ajax中的异步 可以异步的向服务器发送请求 在等待响应的过程中 不会阻塞当前页面
+        浏览器可以做自己的事情 知道成功获取响应后 浏览器才开始处理响应数据</p>
+    <p>3 XML(可扩展标记语言) 是前后端数据通信时传输数据的一种格式 即规定前后端用什么语言接收发送</p>
+    <!-- XML已经不怎么使用了 现在比较常用的是JSON -->
+    <p>4 Ajax其实就是浏览器与服务器之间的一种异步通信方式</p>
+    <p>5 使用AJax可以在不重新加载整个页面的情况下 对页面的某部分进行更新</p>
+    <!-- 如慕课网注册检测 -->
+    <!-- 如慕课网搜索提示 -->
+
+    <p>搭建Ajax开发环境 AJax需要服务器环境 非服务器环境下 很多浏览器无法正常使用Ajax</p>
+    <!-- live Server就是一个本地服务器环境 -->
+    <!-- windows下使用 phpStudy -->
+    <!-- Mac下使用 MAMP -->
+
+
+    <p>得到响应之后 其内容都会填充到xhr对象的属性上 responseText(文本形式)</p>
+    <p>readystatechange事件兼容性不好 不使用this 所有判断最好放在open之前</p>
+</body>
+<script>
+    // 1 XMLHttpRequest
+    // Ajax 想要实现浏览器与服务器之间的异步通信 需要依靠XMLHttpRequest 它是一个构造函数
+    // 注意不论是XMLHttpRequst还是AJax都没和某种具体的数据所绑定 什么都可以使用
+
+    // 2 Ajax的使用
+    // 创建xhr对象
+    const xhr = new XMLHttpRequest();
+
+    // 准备发送请求
+    // xhr.open('Http方法 GET POST PUT DELETE','地址 URL https://www.baidu.com',true);
+    // xhr.open()
+
+    // 发送请求
+    // 调用send()正式发送请求
+    // send()的参数是通过求请求体传入数据 参数与open中方法有关
+    // xhr.send(null);
+
+    // 监听事件 处理响应
+    // 当获取响应后 会触发xhr对象的readystatechange事件 可以在改事件中对响应进行处理
+    xhr.onreadystatechange = () => {   //不考虑兼容性的话可以采取addEventListener写法
+        if (xhr.readyState !== 4) return;
+
+        // 还需继续判断 请求与服务器端不一定得到响应 4只能代表网络过程无误
+
+        // HTTP CODE 状态码判断  status
+        if ((xhr.status >= 200 && xhr.status < 300) ||xhr.sta4 === 304){
+            console.log('您可以正常使用响应数据了');
+            console.log(xhr.responseText);   //数据对象形式
+
+        }
+    };
+    // readystatechange事件监听readystate这个状态的变化 它的值从0-4 一共5个状态
+    // 0 未初始化 尚未调用open
+    // 1 启动 已经调用open 未调用send
+    // 2 发送 已经调用send 为接受到响应
+    // 3 接收 已接收到部分响应数据
+    // 4 完成 已经接收到全部响应数据 且可以在浏览器中使用
+
+
+
+</script>
+
+</html>

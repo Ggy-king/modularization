@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 responseText 文本形式的响应内容</p>
+    <p>2 response 响应内容 默认就是文本形式</p>
+    <p>3 responseType 响应内容的类型</p>
+
+    <p>4 timeout解决发送超时的问题 单位是毫秒 还有对应timeout事件</p>
+    <p>5 withCredentials属性 指定Ajax发送请求时是否携带Cookie</p>
+    <p>使用Ajax发送请求时 默认在同域会携带Cookie 跨域时则不会</p>
+
+    <!-- 以上皆为属性 -->
+    <script>
+        const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState != 4) return;
+
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                console.log('responseText:', xhr.responseText);
+                console.log(JSON.parse(xhr.responseText));
+            }
+        };
+        xhr.open('GET', url, true);
+        // xhr.responseType = 'text'   //text为默认值 === ''
+        // xhr.responseType = 'json'   //可以直接要解析过后的json类型
+
+        // xhr.timeout = 10000;    //一般为10到30秒
+
+
+        xhr.send(null);
+
+        // xhr.withCredentials = true;   //这样跨域的时候也可以携带cookie 也涉及到安全问题 还得看服务器端允不允许
+
+    </script>
+
+    <p>1 XHR方法 abort () 终止当前请求 一般配合abort事件使用</p>
+    <p>2 XHR方法 setRequestHeader() 可以设置请求头信息</p>
+    <!-- xhr.setRequestHeader(头部字段的名称，头部字段的值)  很多头信息不可用不安全-->
+    <p>3 注意form表单中默认的发送格式为1格式</p>
+    <script>
+        const url1 = 'https://www.imooc.com/api/http/search/suggest?words=js';
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState != 4) return;
+
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                console.log('responseText:', xhr.responseText);
+                console.log(JSON.parse(xhr.responseText));
+            }
+        };
+        xhr.open('POST', url1, true);
+
+        // 请求头中的COntent-type字段是用来告诉服务器 浏览器发送的数据是什么格式的
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'); //1格式
+        xhr.setRequestHeader('Content-type', 'application/json'); //2格式
+
+        xhr.send('username=zhangsan&age=18');    //对应上面的1格式
+        xhr.send(JSON.stringify({
+            username:'lisi'
+        }));                                     //对应上面的2格式
+
+        xhr.abort();   //该方法应该在send之后调用
+    </script>
+
+</body>
+
+</html>

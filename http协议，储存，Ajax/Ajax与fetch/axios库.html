@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <p>1 axios是一个基于Promise的HTTP库 可以在浏览器和node.js中使用 简而言之是一个第三方库</p>
+    <!-- http://www.axios-js.com/zh-cn/docs -->
+    <p>2 axios也就是一个封装Ajax发送的库 其写法类似我们自己封装的</p>
+    <!-- 数据格式 你传键值对就是键值对 你传对象表现的是json的字符化形式 -->
+    <p>3 axios中无getJSON 它的数据格式会自动帮你转化成json格式</p>
+    <p>4 axios.post()的第二个参数就是用来传数据的 不能用对象表示来传其他的</p>
+
+    <script>
+        console.log(axios);
+
+
+        const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
+        axios(url, {
+            method: 'post',
+
+            // 请求时的头信息
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                // 'Content-Type': 'application/json'
+            },
+
+            // 通过请求头携带的数据
+            params: {
+                username: 'alex'
+            },
+
+            // 通过请求体携带的数据
+
+            // application/json
+            // data: {
+            //   age: 18,
+            //   sex: 'male'
+            // }
+
+            // application/x-www-form-urlencoded
+            data: 'age=18&sex=male'
+
+            // timeout: 10
+
+            // withCredentials: true
+        })
+            .then(response => {
+                console.log(response);
+                console.log(response.data.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        // axios
+        //   .get(url, {
+        //     params: {
+        //       username: 'alex'
+        //     }
+        //   })
+        //   .then(response => {
+        //     console.log(response);
+        //   });
+
+        // axios
+        //   .post(url, 'username=alex&age=18')
+        //   .then(response => {
+        //     console.log(response);
+        //   })
+        //   .catch(err => {
+        //     console.log(err);
+        //   });
+
+        axios
+            .post('https://www.imooc.com/api/http/json/search/suggest?words=js', {
+                username: 'alex'
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+      // axios.put()
+      // axios.delete()
+    </script>
+    </script>
+</body>
+
+</html>

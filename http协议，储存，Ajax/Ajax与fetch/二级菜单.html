@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>二级菜单</title>
+</head>
+<style>
+  /* css reset */
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  /* menu */
+  .menu {
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin: 10px;
+  }
+
+  .menu-item {
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .menu-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 200px;
+    height: 100px;
+    padding: 0 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .menu-item:hover .menu-content {
+    display: block;
+  }
+
+  .menu-loading {
+    margin: 45px 0 0 92px;
+  }
+</style>
+
+<body>
+  <ul id="menu" class="menu">
+    <!-- <li class="menu-item" data-key="hot" data-done="done">
+        <span>热门</span>
+        <div class="menu-content">
+          <p><img class="menu-loading" src="./loading.gif" alt="加载中" /></p>
+        </div>
+      </li> -->
+  </ul>
+
+  <script type="module">
+    // https://www.imooc.com/api/mall-PC/index/menu/hot
+    // https://www.imooc.com/api/mall-PC/index/menu
+
+    import { getJSON } from './封装Ajax/index.js';
+    const menuURL = 'https://www.imooc.com/api/mall-PC/index/menu';
+    const menuEl = document.getElementById('menu');
+
+    getJSON(menuURL)
+      .then(repsonse => {
+        // console.log(repsonse);
+
+        let html = '';
+
+        for (const item of repsonse.data) {
+          html += `
+              <li class="menu-item" data-key="${item.key}">
+                <span>${item.title}</span>
+                <div class="menu-content">
+                </div>
+              </li>
+            `;
+           // <p><img class="menu-loading" src="./loading.gif" alt="加载中" /></p>
+
+        }
+
+        menuEl.innerHTML = html;
+
+        // [{key: "hot", title: "热门出发地", subTitles: Array(5)}]
+
+      })
+      .then(() => {
+        const items = menuEl.querySelectorAll('.menu-item');
+
+        for (const item of items) {
+          item.addEventListener(
+            'mouseenter',
+            () => {
+              // console.log(item.getAttribute('data-key'));
+
+              // IE11 开始支持
+              // console.log(item.dataset.key);
+
+              if (item.dataset.done === 'done') return;
+
+              getJSON(
+                `https://www.imooc.com/api/mall-PC/index/menu/${item.dataset.key}`
+              )
+                .then(repsonse => {
+                  // console.log(repsonse);
+
+                  // [{title: "内地热门城市", cities: Array(27)}]
+
+                  item.dataset.done = 'done';
+
+                  let html = '';
+
+                  for (const item of repsonse.data) {
+                    html += `<p>${item.title}</p>`;
+                  }
+
+                  item.querySelector('.menu-content').innerHTML = html;
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            },
+            false
+          );
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  </script>
+</body>
+
+</html>

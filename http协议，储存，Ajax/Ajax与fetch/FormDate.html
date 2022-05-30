@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="https://www.imooc.com/api/http/search/suggest?words=js" method="POST"
+        enctype="application/x-www-form-urlencoded" id="login">
+        <input type="text" name="username" placeholder="用户名">
+        <input type="password" name="password" placeholder="密码">
+        <input type="submit" value="登录" id="submit">
+
+    </form>
+    <p>1 使用Ajax提交表单 可以不跳转</p>
+    <p>2 FormData(表单元素)也是一个类需要调用 其结果可以被循环 为数组表示</p>
+    <p>3 FormData是不需要你自己添加Content-Type数据的</p>
+    <p>4 其可以通过append()方法出入数据</p>
+    <script>
+        const login = document.getElementById('login');
+        const { username, password } = login;
+        const btn = document.getElementById('submit');
+
+        btn.addEventListener('click', e => {
+            // 阻止表单数据验证
+            e.preventDefault();
+            // 表单数据验证
+
+            // 发送Ajax请求
+            // ....
+            // ....
+            // 组装数据
+            const data = `username=${username.value}&password=${password.value}`;
+
+            const data1 = new FormData(login);
+            data1.append('sex', 'male');
+
+            //  设置发送请求
+
+            // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // 发送
+
+            // xhr.send(data);
+        }, false)
+    </script>
+
+</body>
+
+</html>

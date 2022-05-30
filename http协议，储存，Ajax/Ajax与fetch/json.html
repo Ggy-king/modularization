@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>1 json就是Ajax发送和接收数据的一种格式 如下更像是对象字符串化</p>
+    <!-- {"code":200,"data":[{"word":"jsp"},{"word":"js"},{"word":"json"},{"word":"js \u5165\u95e8"},{"word":"jstl"}]} -->
+
+    <p>2 科普已淘汰的XML格式</p>
+    <!-- <person>
+        <name>张三</name>
+        <age>15</age>
+        <sex>女</sex>
+    </person> -->
+
+    <p>3 json中有三种数据格式 每种形式都有js中的数据类型很像 可以很轻松的和js中的数据类型互相转化</p>
+    <!-- js -> json -> php/java/c  -->
+    <!-- c/java/ph[ -> json -> js  -->
+
+    <p>4 简单值形式 json不允许注释 跟字符串有关的为双引号 不支持undefined</p>
+    <!-- 其简单值类型就对应着js基本类型值除undefined   其字符串必须有双引号 -->
+    <!-- <script>
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState != 4) return;
+
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                console.log(xhr.responseText);
+                console.log(typeof xhr.responseText);
+            }
+        };
+
+        xhr.open('GET', './plain.json', true);
+        xhr.send(null);
+    </script> -->
+
+    <p>5 对象形式 对应着js的对象形式 属性名必须用双引号 属性值若为字符串也用双引号 无语句变量等概念</p>
+    <script>
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState != 4) return;
+
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                console.log(xhr.responseText);
+                console.log(typeof xhr.responseText);
+            }
+        };
+
+        // xhr.open('GET', './obj.json', true);
+        xhr.open('GET', './arr.json', true);
+        xhr.send(null);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        1 localStorage也是一种浏览器储存数据的方式 与cookie不同的是 它是储存在本地不发送至浏览器
+        单个域名下的localStorage总大小有限制 一般5M
+    </p>
+    <p>2 操作键值对的形式 一共就两值 setltem()增加 getitem获取 removeItem()删除 clear()全部删除</p>
+
+    <p>1 localStorage的存储期限 是持久化的本地存储 除非手动否则永远存在</p>
+    <p>2 sessionStorage（该存储几乎完全类似localStorage） 是当浏览器关闭页面时其中的数据就会被清空</p>
+    <p>3 localStorage的存储类型只能是字符串类型 如果不是也会先转化后传入</p>
+    <p>4 不同域名下不能共用localStorage</p>
+    <p>5 ie8以上支持</p>
+
+    <form action="https://www.imooc.com" id="login" method="post">
+        <input type="text" name="username" id="">
+        <input type="password" name="password" id="">
+        <input type="submit" value="登录" id="btn">
+
+    </form>
+</body>
+<script>
+    localStorage.setItem('username', 'alex');
+    localStorage.setItem('username', 'zs');      //覆盖掉上一个
+    localStorage.setItem('age', 18);
+
+    localStorage.getItem('username');
+    localStorage.getItem('name');      //没有返回null
+
+    localStorage.removeItem('username');
+    localStorage.removeItem('name');    //删除不存在的不会报错
+
+    localStorage.clear();
+
+    sessionStorage.getItem();
+    sessionStorage.setItem();
+    sessionStorage.removeIte();
+    sessionStorage.clear();
+
+
+    // 实现自动填充功能
+    const username = localStorage.getItem('username');
+    if (username) {
+        loginForm.username.value = username;
+    }
+
+    const loginForm = document.getElementById('login');
+    const btn = document.getElementById('btn');
+
+    btn.addEventListener('click', e => {
+        e.preventDefault();
+        // 数据验证
+
+        localStorage.setItem('uesername', loginForm.username.value);
+
+        loginForm.submit();
+    }, false)
+
+</script>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="https://www.imooc.com" method="get">
+        <input type="text" name="username" placeholder="用户名">
+        <input type="password" name="password" placeholder="密码">
+        <input type="submit" value="注册">
+    </form>
+    <form action="https://www.imooc.com" method="post">
+        <input type="text" name="username" placeholder="用户名">
+        <input type="password" name="password" placeholder="密码">
+        <input type="submit" value="注册">
+    </form>
+    <p>http 超文本传输协议</p>
+    <p>html 超文本标记语言</p>
+    <p>超文本 原先一个个单一的文本 通过超链接将其联系起来 由原先的单一的文本变成了可无限延伸、扩展的超级文本、立体文本</p>
+
+
+    <p>网址是不能直接找到服务器的 通过ip寻找 找到ip地址后通过tcp进行连接</p>
+    <p>ip查找现在浏览器内部查找看看以前是否访问过 如果没有则通过DNS域名解析服务器查询ip</p>
+
+    <p>http报文</p>
+    <p>浏览器向服务器发送请求时，请求本身就是信息，叫请求报文</p>
+    <p>服务器向浏览器发送响应时传输的信息，叫响应报文</p>
+    <p>
+        格式
+        请求
+        请求头：起始行+首部 GET/路径/版本
+        <!-- get请求无请求体 post有 -->
+        请求体
+
+        响应
+        响应头：起始行+首部
+        响应体
+    </p>
+
+
+
+    <p>常用的HTTP方法 浏览器发送请求时采用的方法 和响应无关 get post put delete</p>
+    <p>get 获取数据 获取文件资源</p>
+    <p>post 创建数据 注册</p>
+    <p>put 更新数据 修改个人信息 修改密码</p>
+    <p>delete 删除数据 删除评论</p>
+
+    <p>RESTful接口设计 一种设计风格</p>
+    <p>通过id获取个人信息 使用get方法 https://....../api/http/getUser?id=1 其中获取的地址可以理解为接口</p>
+    <p>注册新用户 使用post方法 https://....../api/http/addUser</p>
+    <p>修改一个用户 使用post方法 https://....../api/http/modifyUser</p>
+    <p>删除一个用户 使用post方法 https://....../api/http/deleteUser</p>
+    <!-- get -->
+    <!-- https://....../api/http/User?id=1 -->
+
+    <!-- post -->
+    <!-- https://....../api/http/User -->
+
+
+
+    <p>
+        get 与 post的不同
+        1 get用来获取数据 post用来创建数据
+        2 get通过地址在请求头中携带数据 能携带的数据量与地址长度有关 一般最多就几k
+        3 post既可以通过地址在请求头中携带数据 也可以通过请求体携带数据
+        4 get可以被缓存 post不会被缓存（post的数据一般通过请求体发送而不是地址）
+        5 get请求在网址上被看到理论上post比get安全 实际上都不安全（都未加密）
+        <!-- 发送密码或其他敏感信息时不要使用get 主要是避免他人窥屏或通过浏览历史记录找到你的密码 -->
+    </p>
+    <p>
+        http状态码（status） 定义服务器对请求的处理结果 是服务器所返回的
+        如典型404
+        100-199 消息  表示请求已被接收 需要继续处理  如websocket
+        200-199 成功 如200
+        300-399 重定向 如老网址往新网址跳转 http -> https   301 Moved Permanently(301永久性移动 永久性缓存 使用这个需要谨慎)
+        400-499 请求错误 404 Not Found找不到网页 400 Bad Request
+        500-599 服务器错误 500 Internal Server Error 服务错误
+    </p>
+    <p>
+        302 Move Temporarily 临时性跳转 无缓存（常用）
+        304 Not Modified 表示您的文件没有过期 即可以用在老网址继续使用上（更常用）
+    </p>
+
+</body>
+
+</html>

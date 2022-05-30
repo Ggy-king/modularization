@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 JSON.parse() 其可以将json中的值解析成js中对应的值</p>
+    <p>2 JSON.stringify 可以将js的基本数据类型 对象数组转化成JSON的格式的字符串</p>
+
+    <!-- 
+    <script>
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState != 4) return;
+
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                console.log(xhr.responseText);
+                console.log(typeof xhr.responseText);
+
+
+                console.log(JSON.parse(xhr.responseText));
+                console.log(JSON.parse(xhr.responseText));
+            }
+        };
+
+        xhr.open('GET', './obj.json', true);
+        xhr.send(null);
+
+
+    </script> -->
+
+    <!-- <script>
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState != 4) return;
+
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                console.log(xhr.responseText);
+                console.log(typeof xhr.responseText);
+
+
+                console.log(JSON.parse(xhr.responseText));
+                console.log(JSON.parse(xhr.responseText));
+                // console.log(JSON.stringify('./obj.json'));
+            }
+        };
+
+        xhr.open('POST', 'https://www.baidu.com', true);
+        xhr.send(JSON.stringify({
+            username: 'alex'
+        }));
+    </script> -->
+
+    <!-- 封装storage -->
+    <script type="module">
+        import { set, get, remove, clear } from './storage.js';
+        set('username',{
+            name:'张三',
+            age:18
+        });
+        console.log(get('username'));
+
+    </script>
+
+</body>
+
+
+</html>

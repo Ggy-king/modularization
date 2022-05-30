@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>当name domain path完全一样的时候才是同一cookie</p>
+    <p>1 前后端都可以写入cookie</p>
+    <p>2 cookie数量有限制 每个浏览器不同不一样 大概是每个域名下20-50 超过后浏览器会清除之前的</p>
+    <p>3 cookie大小有限制 一般一个4k左右</p>
+    <script>
+        // Domain域  Domain限制访问cookie的范围 不准你访问别的域名下的cookie
+        // 添加  使用js只能读写当前域或父域(只他们共有的)的cookie 而无法读写其他域
+        document.cookie='username=alex; domain=www.imooc.com';
+
+        // path路径  path限定cookie访问范围 但是是同一域名下    默认都是/  根目录
+        // 如.../course  此时 .../course/list 可以访问 子全可访
+
+        // HttpOnly  有这个属性的cookie不能被js访问
+        // Secure安全标志  其限定了只有在使用了https而不是http的情况下才可以发送给服务端
+
+        // Domain Path Secure都要满足条件 还不能过期的cookie才能被发送到服务器端
+
+    </script>
+    
+</body>
+</html>

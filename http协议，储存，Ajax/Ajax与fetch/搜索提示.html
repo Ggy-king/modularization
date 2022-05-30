@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索提示</title>
+</head>
+
+<body>
+    <input type="text" name="" id="search" />
+    <ul id="result"></ul>
+    <script type="module">
+        // 引入
+        import { getJSON } from './封装Ajax/index.js';
+
+        const searchInput = document.getElementById('search');
+        const resultList = document.getElementById('result');
+
+        const url = 'https://www.imooc.com/api/http/search/suggest?words=';
+
+        const handleInputEvent = () => {
+            // 判断搜索内容是否为空
+            if (searchInput.value.trim() !== '') {
+                // 不为空发送url及用户输入的数据 JSON
+                getJSON(`${url}${searchInput.value}`)
+                    // 成功
+                    .then(response => {
+
+                        console.log(response);
+
+                        let html = '';
+                        // 对下面ul创建li 输出提示
+                        for (const item of response.data) {
+                            html += `<li>${item.word}</li>`;
+                        }
+
+                        resultList.innerHTML = html;
+
+                        resultList.style.display = '';
+
+                    })
+                    // 失败
+                    .catch(err => {
+                        console.log(err);
+                    });
+
+            // 为空
+            } else {
+                resultList.innerHTML = '';
+                resultList.style.display = 'none';
+            }
+        };
+
+        let timer = null;
+        //   input事件ie开始支持
+        // 设延时器 在多少毫秒内不进行发送请求
+        searchInput.addEventListener(
+            'input',
+            () => {
+                // 判断时间是否执行延时器
+                if (timer) {
+                    clearTimeout(timer);
+                }
+
+                timer = setTimeout(handleInputEvent, 500);
+            },
+            false
+        );
+    </script>
+
+</body>
+
+</html>

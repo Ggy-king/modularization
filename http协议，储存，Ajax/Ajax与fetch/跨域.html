@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 不同域发往不同域叫做跨域</p>
+    <!-- 简单理解为不同网址 -->
+    <p>2 跨域会被浏览器阻止 为默认行为 </p>
+    <p>3 什么是域详解</p>
+
+    <p>https(协议)://www.imooc.com(域名):443(端口号)/course/list(路径)</p>
+    <!-- 只要协议 域名 端口号之间有一个不一样就是不同域    与路径无关 -->
+    <!-- 一般来讲https端口号为443  http端口号为80 -->
+
+    <p>4 跨域请求是浏览器本身的一种安全策略--同源策略</p>
+    <!-- 其他客户端或者服务器不存在跨域被阻止的问题 -->
+
+    <p>5 解决方案 1 CORS跨域资源共享 2 JSONP</p>
+    <!-- 优先使用CORS 但有兼容性的问题 不支持的话在用JSONP  主要是后端的内容 -->
+
+    <script>
+        const xhr = new XMLHttpRequest();
+        const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState != 4) return;
+
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+                console.log(xhr.responseText);
+                console.log(typeof xhr.responseText);
+
+
+                console.log(JSON.parse(xhr.responseText));
+                console.log(JSON.parse(xhr.responseText));
+            }
+        };
+
+        xhr.open('GET', url, true);
+        xhr.send(null);
+
+
+    </script>
+    <!-- 1 CORS Access-Control-Allow-Origin: *  表示允许所有域名跨域请求它 -->
+
+    <!-- 2 JSONP 主要就是利用script标签 加载跨域文件 -->
+    <!-- 使用JSONP跨域 服务器端需要准备好其接口 -->
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 fetch也是前后端通信的一方式</p>
+    <p>2 fetch是Ajax的一种代替方案 它是基于Promise的</p>
+    <!-- Ajax的兼容性比fetch好 -->
+    <!-- fetch中没有timeout abort方法 -->
+    <!-- fetch的基本用法 -->
+    <p>3 fetch在js中存在直接调用就可以使用</p>
+    <p>4 fetch没有在地址上携带数据的功能</p>
+    <p>5 如要定义FormData()传数据 直接在body 引入这个定义过的实例即可</p>
+
+    <script>
+        console.log(fetch);
+
+        const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
+
+        // body: (...)
+        // bodyUsed: false
+        // headers: Headers { } 响应头
+        // ok: true
+        // redirected: false
+        // status: 200
+        // statusText: "OK"
+        // type: "cors"
+        // url: "https://www.imooc.com/api/http/search/suggest?words=js"
+        // __proto__: Response
+
+
+
+        fetch(url, {
+            method: 'post',
+            body: 'uesrname=alex&age=18',
+            // body:JSON.stringify({
+            //     username:'alex'
+            // }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            mode:"cors",   //跨域资源共享默认
+            credentials:"include"  // 跨域时是否带上cookie 注意这里不是布尔值
+        }
+        )
+            .then(response => {
+                console.log(response);
+
+                // body: (...)bodyUsed: false
+                // body是读数据的地方 注意只能读一次 读完之后上锁
+
+                // ok 若为true表示可读取数据 不用再去判断HTTP的状态码
+
+                if (response.ok) {
+                    // console.log(response.json());  //读取body中的数据 注意读取格式为promise对象的格式
+                    // 读取可返回之后用then()接收  注意只能读一次
+                    return response.json();
+                    // 如果你的数据不是json格式可以用text 当文本返回
+                    // return response.text();
+                } else {
+                    throw new Error(`HTTP状态码异常 ${response.status}`);
+                }
+            })
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 Cookie全称Http Cookie 是浏览器储存数据的一种方式 因其储存在用户本地即浏览器上 故是本地储存</p>
+    <!-- 会随着请求发送到服务器端 -->
+    <p>一般会自动随着浏览器每次请求发送到服务器端</p>
+    <p>2 利用Cookie跟踪统计用户访问该网站的习惯 比如什么时间访问 访问了多长时间 哪些页面</p>
+    <p>3 不要在浏览器中利用cookie保存敏感信息</p>
+</body>
+<script>
+    // 1 写入cookie  注意cookie写入只能一个一个写
+    document.cookie = 'username=aelx';
+    document.cookie = 'age=18';
+
+    // 2 读取cookie 读取到的是由名值对构成的字符串 之间由; 隔开
+    console.log(document.cookie);
+
+
+    // 3 名称与值是必须写入的其他可以采取默认
+    // 4 如果名称包含非英文 写入时需要使用encodeURIComponent()编码 读取时使用decodeURIComponent()解码
+    document.cookie = `user = ${encodeURIComponent('张三')}`;   //名称一般用英文 值可以不使用
+
+    // 5 到期（失效）时间
+    // 失效cookie会被浏览器清除 若没有设置失效时间 则称为会话cookie（session） 它存在内存中浏览器关才消失
+    // 6 想长时间存在 设置Expires 或Max-Age
+    // expires Date类型
+    document.cookie = `sex=male; expires=${new Date('2100-1-11 00:00:00')}`;
+
+    // max-age 值为数字 表示当前时间 + 多少秒后过期 单位是秒 如果是0或负数cookie会被删除
+    document.cookie = 'posstion=teacher; max-age=5';
+
+
+</script>
+
+</html>
