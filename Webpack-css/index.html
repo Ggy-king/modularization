@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 还需要style loader把我们的css文件以style的形式引入 -->
+    <!-- 或者通过link形式引入  插件名mini-css-extract-clugin -->
+    <p>外部的资源是不需要考虑的 只有本地的资源才需要webpack处理</p>
+    <p>npm install --save-dev file-loader@6.0.0 处理一些其他类型的文件 比如css和js中的图片</p>
+    <p>npm install --save-dev html-withimg-loader@0.1.16 处理html中的图片</p>
+    <img src="./src/img/yy.jpg" alt="">
+    <p>npm install --save-dev url-loader@4.1.0 url-loader比file功能更加全面 两个包都安装 url还可以实现嵌入式编码等</p>
+    <p>base64格式是存在css中的 所以图片不要太多太大 影响性能</p>
+
+
+    <p>
+        使用 npm run dev打开<br>
+        npm install --save-dev webpack-dev-server@3.11.0 搭建开发环境 可以实时改变
+    </p>
+</body>
+
+</html>
