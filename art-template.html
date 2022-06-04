@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/art-template@4.13.2/lib/template-web.js"></script>
+    <!-- 引入模板  或可以直接下载下来 -->
+    <!-- <script type="text/javascript"></script>  此为script默认属性 -->
+
+    <script id="tpl-students" type="text/html">
+        <!-- 该写法会让script标签以html代码的形式读取 -->
+        {{each students}}
+    <li>{{$value.name}} {{$value.age}} {{$value.sex}}</li>
+    {{/each}}
+    <li>{{value}}</li>
+    <li>{{as}}</li>
+    {{if value === 2}}
+    是2
+    {{else}}
+    不是2
+    {{/if}}
+
+    </script>
+</head>
+
+<body>
+    <p>为了解决js与html标签代码混合使用不便的事情引入art-template模板引擎</p>
+    <p>art-template模板</p>
+    <p>官方文档 http://aui.github.io/art-template/zh-cn/docs/</p>
+    <p>引入</p>
+    <p>准备模板</p>
+    <p>获取模板</p>
+    <ul id="ul"></ul>
+    <script>
+        const students = [
+            {
+                name: 'alex',
+                age: 18,
+                sex: 'male'
+            },
+            {
+                name: '张三',
+                age: 45,
+                sex: 'male'
+            },
+            {
+                name: '李四',
+                age: 13,
+                sex: 'male'
+            },
+            {
+                name: '小燕',
+                age: 2,
+                sex: 'male'
+            },
+        ];
+
+        console.log(template('tpl-students', { students: students }));
+        const ul = document.getElementById('ul');
+        ul.innerHTML = template('tpl-students', {
+            // 参数要放在对象中 即使没有参数也要传一个空对象
+            students: students,
+            value: 1,
+            as: {
+                key: 2
+            }
+        });    
+    </script>
+    <p>
+        {{value}} 绑定用两个花括号
+        {{a+b}} 也可以做一些简单的运算
+        {{$data}} 输出全部内容
+        {{@ 名字}} 按标签形式打印
+
+    </p>
+    <!-- 优先使用标准语法 不能解决在使用原始语法 -->
+    <p>条件</p>
+    <p>循环
+        {{each 对象/数组}}
+        {{$value}}每一项通过$value打点{{$index}}每一项的索引值{{$data}}全部数据
+        {{/each}}
+    </p>
+</body>
+
+</html>
+
+
+
